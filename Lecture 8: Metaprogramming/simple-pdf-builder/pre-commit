@@ -1,0 +1,13 @@
+#!/bin/sh
+# 
+# A pre-commit hook to prevent commmit if make command fails 
+
+# Redirect output to stderr.
+exec 1>&2
+
+if ! make; then
+	cat <<\EOF
+Error: Failed to make pdf
+EOF
+	exit 1
+fi
